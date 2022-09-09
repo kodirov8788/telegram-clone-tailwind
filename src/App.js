@@ -9,10 +9,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-
-
-
-
         <Route path="*" element={<h1 className="text-[100px] text-center font-bold text-blue-700">404 error: ishini qil!</h1>} />
 
       </Routes>
