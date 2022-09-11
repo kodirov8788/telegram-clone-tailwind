@@ -1,4 +1,5 @@
 import React from 'react'
+import Img1 from "../1.jpg"
 
 function Register() {
     const style = {
@@ -32,7 +33,10 @@ function Register() {
                             className="block border border-grey-light w-full p-3 rounded mb-4"
                             name="confirm_password"
                             placeholder="Confirm Password" />
-                        <input type="file" />
+                        <div className=" h-[50px]  relative rounded-md  w-full bg-blue-400">
+                            <input type="file" className='w-full h-full opacity-0 cursor-pointer bg-none' />
+                            <h1 className='absolute top-3 text-xl left-[20px] text-white z-10'>Rasm tanlang!</h1>
+                        </div>
 
                         <button
                             type="submit"
