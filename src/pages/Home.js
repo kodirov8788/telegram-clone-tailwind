@@ -1,12 +1,16 @@
 import React from 'react'
-import Main from "../components/Main"
-import Sidebar from "../components/Sidebar"
+import Appear from '../components/Appear'
+import Main from "../components/chat"
 
 function Home() {
+    const style = {
+        home: "flex w-full h-[100vh] bgimage bg-cover"
+    }
     return (
-        <div>
+        <div className={style.home}>
+
             <Main />
-            <Sidebar />
+            <Appear />
         </div>
     )
 }
