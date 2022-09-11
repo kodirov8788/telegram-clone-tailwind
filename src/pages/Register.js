@@ -69,7 +69,7 @@ function Register() {
 
                     <div className={style.footer_login}>
                         Already have an account?
-                        <a className={style.footer_link} href="../login/">
+                        <a className={style.footer_link} href="login">
                             Log in
                         </a>.
                     </div>
