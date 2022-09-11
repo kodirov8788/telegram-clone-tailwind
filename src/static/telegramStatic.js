@@ -27,4 +27,118 @@ export const chatInfo = [
         send: "",
         recieved: "GitHub - kodirov8788/amazon-tailwing"
     },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
+    {
+        id: 3,
+        chatImg: react,
+        chatName: "ReactJS Group Level 5",
+        chatType: "Group",
+        send: "",
+        recieved: "GitHub - kodirov8788/amazon-tailwing"
+    },
 ]

@@ -7,7 +7,7 @@ import Sidebar from "./sidebar"
 const Chat = () => {
 
     const style = {
-        chat: "w-2/5 h-full bg-[#212121] flex flex-col border-r-[1px] border-solid border-[#2C2C2C]",
+        chat: "w-full sm:w-2/5 h-full bg-[#212121] flex flex-col border-r-[1px] border-solid border-[#2C2C2C]",
         searchBox: "w-full py-[10px] px-[20px] items-center flex",
         search: "w-full h-[40px] bg-[#2C2C2C] items-center flex rounded-[20px] px-[10px] overflow-hidden",
         nav: "w-full shadow-md bg-[#212121]",

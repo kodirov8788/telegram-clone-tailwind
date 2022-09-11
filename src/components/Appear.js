@@ -3,7 +3,7 @@ import vk from "../images/vk.jpg"
 const Appear = () => {
 
     const style = {
-        appear: "w-[75%] h-full flex flex-col justify-between",
+        appear: "w-3/5 hidden sm:flex h-full flex-col justify-between",
         chatTop: "w-full h-[55px] bg-[#212121] flex items-center justify-betweeen px-[20px]",
         sides: "flex h-full items-center",
         innerSide: "flex flex-col justify-between pl-[10px]",

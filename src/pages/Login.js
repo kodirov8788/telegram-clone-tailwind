@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 function Login() {
     const style = {
-        register: "bg-grey-lighter min-h-screen flex flex-col",
+        register: "bg-grey-lighter min-h-screen flex flex-col loginbg bg-cover",
         register_child: "container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2",
         register_container: "bg-white px-6 py-8 rounded shadow-md text-black w-full",
         signuph1: "mb-8 text-3xl text-center",
@@ -13,7 +14,7 @@ function Login() {
         btn: "w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1 border hover:bg-red-300 border-black",
         footer: "text-center text-sm text-grey-dark mt-4",
         footer_link: "no-underline border-b border-grey-dark text-grey-dark ml-3",
-        footer_login: "text-grey-dark mt-6"
+        footer_login: "text-grey-dark mt-6 text-white"
 
     }
 
@@ -57,9 +58,9 @@ function Login() {
 
                     <div className={style.footer_login}>
                         Already have an account?
-                        <a className={style.footer_link} href="/register">
+                        <Link className={style.footer_link} to="/register">
                             Register
-                        </a>.
+                        </Link>.
                     </div>
                 </div>
             </div>
