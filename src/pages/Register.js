@@ -1,5 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, storage, db } from "../firebase/firebaseConfig"
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
+
 
 function Register() {
     const style = {
@@ -18,10 +23,56 @@ function Register() {
 
     }
 
+    const SubmitFunc = async (e) => {
+        e.preventDefault()
+        const displayName = e.target[0].value;
+        const email = e.target[1].value;
+        const password = e.target[2].value;
+        const file = e.target[3].files[0]
+
+        const res = await createUserWithEmailAndPassword(auth, email, password)
+
+
+
+        const storageRef = ref(storage, displayName);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + Math.floor(progress) + '% done');
+                switch (snapshot.state) {
+                    case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            (error) => {
+                console.log("storage error >>", error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                    await updateProfile(res.user, {
+                        displayName,
+                        photoURL: downloadURL
+                    })
+                    await setDoc(doc(db, "users", res.user.uid), {
+                        name: displayName,
+                        email: email,
+                        password: password,
+                        photoUrl: downloadURL
+                    });
+                });
+            }
+        )
+    }
+
     return (
         <div className={style.register}>
             <div className={style.register_child}>
-                <div className={style.register_container}>
+                <form onSubmit={SubmitFunc} className={style.register_container}>
                     <h1 className={style.signuph1}>Sign up</h1>
                     <input
                         type="text"
@@ -40,11 +91,7 @@ function Register() {
                         className={style.input}
                         name="password"
                         placeholder="Password" />
-                    <input
-                        type="password"
-                        className={style.input}
-                        name="confirm_password"
-                        placeholder="Confirm Password" />
+
                     <div className={style.inputwrap}>
                         <input type="file" className={style.inputfile} />
                         <h1 className={style.inputh1}>Rasm tanlang!</h1>
@@ -55,17 +102,7 @@ function Register() {
                         type="submit"
                         className={style.btn}
                     >Create Account</button>
-
-                    <div className={style.footer}>
-                        By signing up, you agree to the
-                        <a className={style.footer_link} href="#">
-                            Terms of Service
-                        </a> and
-                        <a className={style.footer_link} href="#">
-                            Privacy Policy
-                        </a>
-                    </div>
-                </div>
+                </form>
 
                 <div className={style.footer_login}>
                     Already have an account?
@@ -74,7 +111,7 @@ function Register() {
                     </Link>.
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

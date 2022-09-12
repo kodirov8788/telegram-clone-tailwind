@@ -1,7 +1,7 @@
 import { FiSearch } from "react-icons/fi"
 import { GoThreeBars } from "react-icons/go"
 import Chatdetails from "./chatInfo"
-import Sidebar from "./sidebar"
+import Sidebar from "./Sidebar"
 
 
 const Chat = () => {
