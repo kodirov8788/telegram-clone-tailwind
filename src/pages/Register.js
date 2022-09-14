@@ -32,8 +32,6 @@ function Register() {
 
         const res = await createUserWithEmailAndPassword(auth, email, password)
 
-
-
         const storageRef = ref(storage, displayName);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on('state_changed',
@@ -58,6 +56,9 @@ function Register() {
                         displayName,
                         photoURL: downloadURL
                     })
+
+                    await setDoc(doc(db, "userChat", res.user.uid), {})
+
                     await setDoc(doc(db, "users", res.user.uid), {
                         name: displayName,
                         email: email,
