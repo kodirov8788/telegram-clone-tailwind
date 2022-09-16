@@ -6,7 +6,7 @@ import { auth } from "../firebase/firebaseConfig"
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState([])
 
     useEffect(() => {
         const unsub = () => {
@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
             unsub()
         }
     }, []);
+    console.log("user >>", currentUser)
 
     return (
         <AuthContext.Provider value={{ currentUser }}>{children}</AuthContext.Provider>

@@ -27,35 +27,35 @@ export const chatInfo = [
         send: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in aliquam non. Tempora necessitatibus accusantium exerci "
     },
     {
-        id: 3,
+        id: 4,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
         send: "Lorem ipsum dolor sit amet consectetur "
     },
     {
-        id: 3,
+        id: 5,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
         send: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in aliquam non. Tempora necessitatibus accusantium exercitationem sequi asperiores consectetur unde consequuntur labore? Aperiam perspiciatis "
     },
     {
-        id: 3,
+        id: 6,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
         send: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in aliquam non."
     },
     {
-        id: 3,
+        id: 7,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
         send: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in aliquam non."
     },
     {
-        id: 3,
+        id: 8,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
@@ -63,71 +63,20 @@ export const chatInfo = [
     },
 
     {
-        id: 3,
+        id: 9,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
         send: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in "
     },
     {
-        id: 3,
+        id: 10,
         chatImg: react,
         chatName: "ReactJS Group Level 5",
         chatType: "Group",
         send: "lllqlewel dlsakdlskdw  dsla;ks;ldka",
         recieved: "GitHub - kodirov8788/amazon-tailwing"
     },
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "Lorem ipsum dolor "
-    },
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "Lorem ipsum dolor sit amet consectetur "
-    },
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "Lorem ipsum dolor sit "
-    },
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in aliquam non. Tempora necessitatibus accusantium "
-    },
 
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam necessitatibus in aliquam non."
-    },
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "sequi asperiores consectetur unde consequuntur labore? Aperiam perspiciatis repudiandae reiciendis?",
-        recieved: "GitHub - kodirov8788/amazon-tailwing"
-    },
-    {
-        id: 3,
-        chatImg: react,
-        chatName: "ReactJS Group Level 5",
-        chatType: "Group",
-        send: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, perferendis! Et numquam  perspiciatis repudiandae reiciendis?",
-        recieved: "GitHub - kodirov8788/amazon-tailwing"
-    },
 ]
 

@@ -10,14 +10,12 @@ import { TbBug, TbLetterK, TbLetterW } from "react-icons/tb"
 import Chatdetails from "./chatInfo"
 import Sidebar from "./Sidebar"
 import { Link } from "react-router-dom"
+import { signOut } from "firebase/auth"
+import { auth } from "../firebase/firebaseConfig"
 
 
 const Chat = () => {
-
     const [click, setClick] = useState(false)
-
-    console.log(click)
-
     const style = {
         chat: "w-[35%] h-full bg-[#212121] flex flex-col border-r-[1px] border-solid border-[#2C2C2C]",
         searchBox: "w-full py-[10px] px-[15px] items-center flex",
@@ -52,7 +50,7 @@ const Chat = () => {
                                 <li className={style.menuLi}><TbLetterK className={style.menuIcon} />Switch to K Version</li>
                                 <li className={style.menuLi}><TbLetterW className={style.menuIcon} />Switch to Old Version</li>
                                 <li className={style.menuLi}><AiOutlinePlusCircle className={style.menuIcon} />Install App</li>
-                                <li className={style.menuLi}><VscSignOut className={style.menuIcon} />Sign Out</li>
+                                <button className={style.menuLi} onClick={() => signOut(auth)}> <VscSignOut className={style.menuIcon} />Sign Out</button>
                                 <li className={style.version}>Telgramm WebZ 1.51.1</li>
                             </ul>
                         </div>

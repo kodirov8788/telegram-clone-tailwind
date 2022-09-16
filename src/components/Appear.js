@@ -34,7 +34,7 @@ const Appear = () => {
             </div>
             <div className={style.mainChat}>
 
-                {chatInfo.map((chat) => (<>
+                {chatInfo.map((chat) => (<div className="" key={chat.id}>
                     <div className={style.leftchat}>
                         <h1 className={style.leftchat_h1}>{chat.send}</h1>
                     </div>
@@ -43,7 +43,7 @@ const Appear = () => {
 
                     </div>
 
-                </>))}
+                </div>))}
 
             </div>
 
