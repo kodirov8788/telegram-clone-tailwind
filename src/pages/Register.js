@@ -1,12 +1,14 @@
 import React from 'react'
-import { Link } from "react-router-dom"
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom"
+import { createUserWithEmailAndPassword, updateProfile, signOut } from "firebase/auth";
 import { auth, storage, db } from "../firebase/firebaseConfig"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 
 
 function Register() {
+    const navigate = useNavigate()
+
     const style = {
         register: "bg-grey-lighter min-h-screen flex flex-col loginbg bg-cover",
         register_child: "container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2",
@@ -65,6 +67,7 @@ function Register() {
                         password: password,
                         photoUrl: downloadURL
                     });
+                    navigate('/')
                 });
             }
         )
@@ -73,6 +76,7 @@ function Register() {
     return (
         <div className={style.register}>
             <div className={style.register_child}>
+                s
                 <form onSubmit={SubmitFunc} className={style.register_container}>
                     <h1 className={style.signuph1}>Sign up</h1>
                     <input
@@ -105,12 +109,15 @@ function Register() {
                     >Create Account</button>
                 </form>
 
+
                 <div className={style.footer_login}>
                     Already have an account?
                     <Link className={style.footer_link} to="/login">
                         Log in
                     </Link>.
                 </div>
+                <button onClick={() => signOut(auth)} className="text-white border">Sign out</button>
+
             </div>
         </div >
     )
