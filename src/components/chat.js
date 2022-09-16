@@ -39,6 +39,7 @@ const Chat = () => {
                         <GoThreeBars className={style.menuBtn} />
                         <div style={{ transform: `${click ? "scale(1)" : "scale(0)"}` }} className={style.menuBox}>
                             <ul className={style.menuCollection}>
+
                                 <li className={style.menuLi}><FiBookmark className={style.menuIcon} />Saved Messages</li>
                                 <li className={style.menuLi}><BiArchiveIn className={style.menuIcon} />Archived Chats</li>
                                 <li className={style.menuLi}><FaRegUser className={style.menuIcon} />Contacts</li>
@@ -50,7 +51,11 @@ const Chat = () => {
                                 <li className={style.menuLi}><TbLetterK className={style.menuIcon} />Switch to K Version</li>
                                 <li className={style.menuLi}><TbLetterW className={style.menuIcon} />Switch to Old Version</li>
                                 <li className={style.menuLi}><AiOutlinePlusCircle className={style.menuIcon} />Install App</li>
+
+
                                 <button className={style.menuLi} onClick={() => signOut(auth)}> <VscSignOut className={style.menuIcon} />Sign Out</button>
+
+
                                 <li className={style.version}>Telgramm WebZ 1.51.1</li>
                             </ul>
                         </div>
