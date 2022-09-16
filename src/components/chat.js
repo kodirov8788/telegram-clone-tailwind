@@ -12,6 +12,7 @@ import Sidebar from "./Sidebar"
 import { Link } from "react-router-dom"
 import { signOut } from "firebase/auth"
 import { auth } from "../firebase/firebaseConfig"
+import Profile from "./Profile"
 
 
 const Chat = () => {
@@ -39,7 +40,7 @@ const Chat = () => {
                         <GoThreeBars className={style.menuBtn} />
                         <div style={{ transform: `${click ? "scale(1)" : "scale(0)"}` }} className={style.menuBox}>
                             <ul className={style.menuCollection}>
-
+                                <Profile />
                                 <li className={style.menuLi}><FiBookmark className={style.menuIcon} />Saved Messages</li>
                                 <li className={style.menuLi}><BiArchiveIn className={style.menuIcon} />Archived Chats</li>
                                 <li className={style.menuLi}><FaRegUser className={style.menuIcon} />Contacts</li>
