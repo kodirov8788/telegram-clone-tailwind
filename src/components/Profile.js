@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import Img1 from "../images/vk.jpg"
 import { AuthContext } from "../context/AuthContext"
 
 function Profile() {
