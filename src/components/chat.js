@@ -13,6 +13,7 @@ import { Link } from "react-router-dom"
 import { signOut } from "firebase/auth"
 import { auth } from "../firebase/firebaseConfig"
 import Profile from "./Profile"
+import Search from "./Search"
 
 
 const Chat = () => {
@@ -61,12 +62,10 @@ const Chat = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className={style.search}>
-                        <FiSearch className={style.searchIcon} />
-                        <input className={style.input} type="text" placeholder="Search" />
-                    </div>
+                    <Search />
                 </div>
                 <Sidebar />
+
             </div>
             <Chatdetails />
         </div>

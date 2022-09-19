@@ -13,15 +13,15 @@ const Chatdetails = () => {
     return (
         <div className={style.detailBox}>
             {
-                chatInfo.map((chat) => (
-                    <div key={chat.id} className={style.detail_container}>
-                        <img src={chat.chatImg} alt="" className={style.detail_img} />
-                        <div className={style.deatilwrap}>
-                            <p className={style.detail_text}>{chat.chatName}</p>
-                            <p className={style.detail_text2}>{chat.recieved}</p>
-                        </div>
-                    </div>
-                ))
+                // chatInfo.map((chat) => (
+                //     <div key={chat.id} className={style.detail_container}>
+                //         <img src={chat.chatImg} alt="" className={style.detail_img} />
+                //         <div className={style.deatilwrap}>
+                //             <p className={style.detail_text}>{chat.chatName}</p>
+                //             <p className={style.detail_text2}>{chat.recieved}</p>
+                //         </div>
+                //     </div>
+                // ))
             }
         </div>
     )

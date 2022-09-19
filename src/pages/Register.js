@@ -62,10 +62,10 @@ function Register() {
                     await setDoc(doc(db, "userChat", res.user.uid), {})
 
                     await setDoc(doc(db, "users", res.user.uid), {
-                        name: displayName,
+                        displayName: displayName,
                         email: email,
                         password: password,
-                        photoUrl: downloadURL
+                        photoURL: downloadURL
                     });
                     navigate('/')
                 });
