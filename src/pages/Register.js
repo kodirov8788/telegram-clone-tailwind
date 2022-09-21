@@ -59,7 +59,7 @@ function Register() {
                         photoURL: downloadURL
                     })
 
-                    await setDoc(doc(db, "userChat", res.user.uid), {})
+                    await setDoc(doc(db, "userChats", res.user.uid), {})
 
                     await setDoc(doc(db, "users", res.user.uid), {
                         displayName: displayName,

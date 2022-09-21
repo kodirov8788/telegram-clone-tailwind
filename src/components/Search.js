@@ -17,18 +17,18 @@ function Search() {
     }
 
     const { currentUser } = useContext(AuthContext)
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
     console.log("user >>", user);
     const HundleSearch = async (e) => {
         const q = query(collection(db, "users"), where("displayName", "==", e.target.value));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            setUser({ ...user, uid: doc.id, data: doc.data() });
+            setUser({ uid: doc.id, data: doc.data() });
         });
     }
 
     const HundleSelect = async () => {
-        const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid
+        const combinedId = currentUser.uid > user?.uid ? currentUser.uid + user.uid : user?.uid + currentUser.uid
         console.log("combined >>", combinedId);
         console.log("user >>", user.uid);
         console.log("current >>", currentUser.uid);
@@ -40,8 +40,8 @@ function Search() {
                 await updateDoc(doc(db, "userChats", currentUser.uid), {
                     [combinedId + ".userInfo"]: {
                         uid: user.uid,
-                        displayName: user.displayName,
-                        photoURL: user.photoURL
+                        displayName: user.data?.displayName,
+                        photoURL: user.data?.photoURL
                     },
                     [combinedId + ".date"]: serverTimestamp()
                 });
@@ -65,10 +65,9 @@ function Search() {
         <div className={style.search}>
             <FiSearch className={style.searchIcon} />
             <input className={style.input} onChange={HundleSearch} type="text" placeholder="Search" />
-
-            {!user ? "" : <div className={style.searchBox2} onClick={HundleSelect}>
-                <img src={user.data.photoURL} alt="" className={style.userImg} />
-                <h1 className={style.username}>{user.data.displayName}</h1>
+            {!user || user === undefined ? "" : <div className={style.searchBox2} onClick={HundleSelect}>
+                <img src={user.data?.photoURL} alt="" className={style.userImg} />
+                <h1 className={style.username}>{user.data?.displayName}</h1>
             </div>
             }
         </div>

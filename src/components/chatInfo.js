@@ -1,4 +1,10 @@
-import { chatInfo } from "../static/telegramStatic"
+import { useState } from "react"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext"
+import { ChatContext } from "../context/ChatContext"
+import { doc, onSnapshot } from "firebase/firestore";
+import { useEffect } from "react"
+import { db } from "../firebase/firebaseConfig"
 
 const Chatdetails = () => {
     const style = {
@@ -10,6 +16,23 @@ const Chatdetails = () => {
         detail_text2: "text-[12px] text-[rgb(170,170,170)]"
 
     }
+    const { currentUser } = useContext(AuthContext)
+    const { dispatch } = useContext(ChatContext)
+    const [chat, setChat] = useState()
+    console.log("chat user>>", chat)
+    useEffect(() => {
+        const getRealtime = () => {
+            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+                setChat(doc.data());
+            });
+            return () => {
+                unsub()
+            }
+        }
+        currentUser.uid && getRealtime()
+    }, [currentUser.uid])
+
+
     return (
         <div className={style.detailBox}>
             {
