@@ -17,9 +17,9 @@ const Chatdetails = () => {
 
     }
     const { currentUser } = useContext(AuthContext)
-    const { dispatch } = useContext(ChatContext)
-    const [chat, setChat] = useState()
-    console.log("chat user>>", chat)
+    const { dispatch, data } = useContext(ChatContext)
+    console.log("data >>>", data);
+    const [chat, setChat] = useState([])
     useEffect(() => {
         const getRealtime = () => {
             const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -32,19 +32,23 @@ const Chatdetails = () => {
         currentUser.uid && getRealtime()
     }, [currentUser.uid])
 
+    const HundleChangeUser = (argument) => {
+        dispatch({ type: "CHANGE_USER", payload: argument })
+    }
+    console.log("chat user>>", Object.entries(chat))
 
     return (
         <div className={style.detailBox}>
             {
-                // chatInfo.map((chat) => (
-                //     <div key={chat.id} className={style.detail_container}>
-                //         <img src={chat.chatImg} alt="" className={style.detail_img} />
-                //         <div className={style.deatilwrap}>
-                //             <p className={style.detail_text}>{chat.chatName}</p>
-                //             <p className={style.detail_text2}>{chat.recieved}</p>
-                //         </div>
-                //     </div>
-                // ))
+                Object.entries(chat).map((chat) => (
+                    <div key={chat[0]} className={style.detail_container} onClick={() => HundleChangeUser(chat[1].userInfo)}>
+                        <img src={chat[1].userInfo.photoURL} alt="" className={style.detail_img} />
+                        <div className={style.deatilwrap}>
+                            <p className={style.detail_text}>{chat[1].userInfo.displayName}</p>
+                            <p className={style.detail_text2}>{chat.recieved}</p>
+                        </div>
+                    </div>
+                ))
             }
         </div>
     )
