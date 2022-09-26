@@ -1,5 +1,6 @@
 import vk from "../images/vk.jpg"
-import { chatInfo } from "../static/telegramStatic"
+import Input from "./Input"
+import Messages from "./Messages"
 
 const Appear = () => {
 
@@ -34,20 +35,12 @@ const Appear = () => {
             </div>
             <div className={style.mainChat}>
 
-                {chatInfo.map((chat) => (<div className="" key={chat.id}>
-                    <div className={style.leftchat}>
-                        <h1 className={style.leftchat_h1}>{chat.send}</h1>
-                    </div>
-                    <div className={style.rightchat}>
-                        <h1 className={style.rightchat_h1}>{chat.send}</h1>
-
-                    </div>
-
-                </div>))}
+                <Messages />
 
             </div>
 
             <div className={style.chat_footer}>
+                <Input />
             </div>
         </div>
     )
