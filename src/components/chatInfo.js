@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { chatInfo } from "../static/telegramStatic"
+// import { chatInfo } from "../static/telegramStatic"
 import { doc, onSnapshot } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { AuthContext } from "../context/AuthContext";

@@ -37,7 +37,7 @@ function Search() {
 
     }
     const HundleKey = (e) => {
-        e.code == "Enter" && HundleSearch()
+        e.code === "Enter" && HundleSearch()
         console.log("ishladi", e.code);
     }
     const HundleSelect = async () => {
