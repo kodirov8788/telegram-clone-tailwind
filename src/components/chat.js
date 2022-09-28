@@ -1,6 +1,6 @@
 import { GoThreeBars } from "react-icons/go"
 import Chatdetails from "./chatInfo"
-import Sidebar from "./sidebar"
+import Sidebar from "./Sidebar"
 import { signOut } from "firebase/auth"
 import { auth } from "../firebase"
 import { useState } from "react"
