@@ -7,12 +7,14 @@ import { firestore, storage } from '../firebase'
 import { v4 as uuid } from "uuid"
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { MdAttachFile } from "react-icons/md"
+import InputEmoji from 'react-input-emoji'
+import { useEffect } from 'react'
 
 function Input() {
     const style = {
         chat_footer: "w-full h-[100px] bg-blue-400 sticky bottom-0 flex items-center",
         send: "flex ",
-        input: "flex-[1] h-4/5 text-[30px] indent-3 bg-transparent outline-none placeholder:text-white text-white",
+        input: "flex-[1] h-4/5 text-[30px] indent-3 bg-transparent outline-none placeholder:text-white text-white bg-none",
         file: "w-fit px-[20px] hover:bg-gray-300 duration-300  relative rounded",
         fileInput: "absolute top-0 w-full h-full opacity-0 cursor-pointer",
         icon: "text-[50px] rotate-[45deg]",
@@ -22,6 +24,8 @@ function Input() {
     const [img, setImg] = useState(null)
     const { data } = useContext(ChatContext)
     const { currentUser } = useContext(AuthContext)
+    const [emoji, setEmoji] = useState(null)
+    console.log("emoji >>", emoji)
     const handleSend = async () => {
         if (img) {
             const storageRef = ref(storage, uuid());
@@ -82,10 +86,23 @@ function Input() {
         setImg(null)
         setText("")
     }
+    function handleOnEnter(text) {
+        console.log('enter', text)
+    }
+
     return (
         <div className={style.chat_footer}>
-            <input type="text" className={style.input} placeholder='text' value={text} onChange={(e) => setText(e.target.value)} />
+            {/* <input type="text" className={style.input} placeholder='text' value={text.inputValue} onChange={(e) => setText(e.target.value)} /> */}
+            <InputEmoji
+                value={text}
+                className={style.input}
+                onChange={setText}
+                cleanOnEnter
+                onEnter={handleOnEnter}
+                placeholder="Type a message"
+            />
             <div className={style.send}>
+                {/* <EmojiPicker onEmojiClick={(e) => setEmoji(e?.emoji.toString())} /> */}
                 <div className={style.file}>
                     <MdAttachFile className={style.icon} />
                     <input type="file" className={style.fileInput} onChange={(e) => setImg(e.target.files[0])} />

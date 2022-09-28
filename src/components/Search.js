@@ -9,7 +9,7 @@ function Search() {
     const [username, setUsername] = useState("")
     const [user, setUser] = useState(null)
     const [error, setError] = useState(false)
-    console.log(" user>>", user);
+    // console.log(" user>>", user);
     const style = {
         search: "w-full h-[40px] bg-[#2C2C2C] items-center flex rounded-[20px] px-[10px] overflow-hidden",
         searchIcon: "text-[18px] text-[rgb(170,170,170)]",
@@ -38,7 +38,7 @@ function Search() {
     }
     const HundleKey = (e) => {
         e.code === "Enter" && HundleSearch()
-        console.log("ishladi", e.code);
+        // console.log("ishladi", e.code);
     }
     const HundleSelect = async () => {
         const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid

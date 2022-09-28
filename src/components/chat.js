@@ -12,9 +12,9 @@ import Search from "./Search"
 
 const Chat = () => {
     const [click, setclick] = useState(false)
-    console.log(click)
+    // console.log(click)
     const { currentUser } = useContext(AuthContext)
-    console.log("nav >>>", currentUser);
+    // console.log("nav >>>", currentUser);
     const style = {
         chat: "w-full sm:w-3/12 h-full bg-[#212121] flex flex-col border-r-[1px] border-solid border-[#2C2C2C]",
         searchBox: "w-full py-[10px] px-[20px] items-center flex",
