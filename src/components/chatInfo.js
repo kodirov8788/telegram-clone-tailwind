@@ -1,11 +1,9 @@
-import { useState } from "react"
-import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
-import { ChatContext } from "../context/ChatContext"
+import { useContext, useEffect, useState } from "react"
+import { chatInfo } from "../static/telegramStatic"
 import { doc, onSnapshot } from "firebase/firestore";
-import { useEffect } from "react"
-import { db } from "../firebase/firebaseConfig"
-
+import { firestore } from "../firebase";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
 const Chatdetails = () => {
     const style = {
         detailBox: "w-full h-full bg-transparent p-[5px] overflow-y-scroll",
@@ -17,35 +15,33 @@ const Chatdetails = () => {
 
     }
     const { currentUser } = useContext(AuthContext)
-    const { dispatch, data } = useContext(ChatContext)
-    console.log("data >>>", data);
-    const [chat, setChat] = useState([])
+    const { dispatch } = useContext(ChatContext)
+    const [chats, setChats] = useState([])
     useEffect(() => {
-        const getRealtime = () => {
-            const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-                setChat(doc.data());
+        const getChats = () => {
+            const unsub = onSnapshot(doc(firestore, "userChats", currentUser.uid), (doc) => {
+                setChats(doc.data())
             });
             return () => {
                 unsub()
             }
         }
-        currentUser.uid && getRealtime()
+        currentUser.uid && getChats()
     }, [currentUser.uid])
 
-    const HundleChangeUser = (argument) => {
-        dispatch({ type: "CHANGE_USER", payload: argument })
+    const HundleSelect = (ee) => {
+        dispatch({ type: "CHANGE_USER", payload: ee })
     }
-    console.log("chat user>>", Object.entries(chat))
-
+    // console.log("chats", Object.entries(chats));
     return (
         <div className={style.detailBox}>
             {
-                Object.entries(chat).map((chat) => (
-                    <div key={chat[0]} className={style.detail_container} onClick={() => HundleChangeUser(chat[1].userInfo)}>
-                        <img src={chat[1].userInfo.photoURL} alt="" className={style.detail_img} />
+                Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
+                    <div key={chat[0]} className={style.detail_container} onClick={() => HundleSelect(chat[1].userInfo)}>
+                        <img src={chat[1].userInfo?.photoURL} alt="" className={style.detail_img} />
                         <div className={style.deatilwrap}>
-                            <p className={style.detail_text}>{chat[1].userInfo.displayName}</p>
-                            <p className={style.detail_text2}>{chat.recieved}</p>
+                            <p className={style.detail_text}>{chat[1].userInfo?.displayName}</p>
+                            <p className={style.detail_text2}>{chat[1].lastMessage?.text}</p>
                         </div>
                     </div>
                 ))

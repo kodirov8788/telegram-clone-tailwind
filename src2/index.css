@@ -10,7 +10,3 @@
 .loginbg {
     background-image: url("./images/bg.jpg");
 }
-
-.imgCont:last-child {
-    padding-bottom: 100px;
-}

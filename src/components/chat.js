@@ -1,74 +1,52 @@
-import { useState } from "react"
-import { FiSearch, FiBookmark, FiSettings } from "react-icons/fi"
 import { GoThreeBars } from "react-icons/go"
-import { VscSignOut, VscSignIn } from "react-icons/vsc"
-import { BiArchiveIn } from "react-icons/bi"
-import { FaRegUser } from "react-icons/fa"
-import { RiMoonClearFill } from "react-icons/ri"
-import { AiOutlineQuestionCircle, AiOutlinePlusCircle } from "react-icons/ai"
-import { TbBug, TbLetterK, TbLetterW } from "react-icons/tb"
 import Chatdetails from "./chatInfo"
-import Sidebar from "./Sidebar"
-import { Link } from "react-router-dom"
+import Sidebar from "./sidebar"
 import { signOut } from "firebase/auth"
-import { auth } from "../firebase/firebaseConfig"
-import Profile from "./Profile"
+import { auth } from "../firebase"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../context/AuthContext"
+import { useContext } from "react"
 import Search from "./Search"
 
 
 const Chat = () => {
-    const [click, setClick] = useState(false)
+    const [click, setclick] = useState(false)
+    console.log(click)
+    const { currentUser } = useContext(AuthContext)
+    console.log("nav >>>", currentUser);
     const style = {
-        chat: "w-[35%] h-full bg-[#212121] flex flex-col border-r-[1px] border-solid border-[#2C2C2C]",
-        searchBox: "w-full py-[10px] px-[15px] items-center flex",
-        search: "w-full h-[40px] bg-[#2C2C2C] items-center flex rounded-[20px] px-[10px] overflow-hidden",
+        chat: "w-full sm:w-3/12 h-full bg-[#212121] flex flex-col border-r-[1px] border-solid border-[#2C2C2C]",
+        searchBox: "w-full py-[10px] px-[20px] items-center flex",
         nav: "w-full shadow-md bg-[#212121]",
-        menuBtn: "text-[19px] text-[rgb(170,170,170)]",
-        searchIcon: "text-[18px] text-[rgb(170,170,170)]",
+        menuBtnWrap: "relative ",
+        menuBtn: "text-[26px] text-[rgb(170,170,170)] mr-[20px] hover:bg-red-400 cursor-pointer rounded-full",
         input: "bg-transparent text-[14px] flex-[1] h-full px-[10px] outline-none text-[rgb(170,170,170)]",
-        barsBox: "w-[39px] h-[35px] hover:bg-[#2C2C2C] rounded-[50%] grid place-items-center mr-[5px] cursor-[pointer] relative",
-        menuBox: "w-[250px] bg-[#2e2e2ecc] backdrop-blur-[5px] duration-[.3s] ease-out origin-top-left absolute top-[45px] left-0 p-[5px] rounded-[10px] shadow-md",
-        menuCollection: "list-none w-full h-full flex flex-col",
-        menuLi: "w-full flex py-[5px] list-none hover:bg-[#202020] cursor-pointer rounded-[4px] text-[13px] font-medium text-white",
-        version: "w-full py-[7px] flex justify-center text-[11px] font-light text-[rgb(170,170,170)]",
-        menuIcon: "text-[18px] text-[#aaaaaa] mx-[10px]"
+        clickBox: `${click ? "scale-[1]" : "scale-[0]"} origin-top-left duration-[.5s] bg-blue-500 w-[200px] h-[200px] absolute flex flex-col items-center justify-around`,
+        signout: "  px-5  py-2 bg-red-300 rounded-lg hover:bg-red-500 hover:text-white duration-[.3s]",
+        clickBox_h1: "",
+        clickBox_img: "w-2/5 rounded-full aspect-square"
     }
+
+
     return (
         <div className={style.chat}>
             <div className={style.nav}>
                 <div className={style.searchBox}>
-                    <div onClick={() => setClick(!click)} className={style.barsBox}>
-                        <GoThreeBars className={style.menuBtn} />
-                        <div style={{ transform: `${click ? "scale(1)" : "scale(0)"}` }} className={style.menuBox}>
-                            <ul className={style.menuCollection}>
-                                <Profile />
-                                <li className={style.menuLi}><FiBookmark className={style.menuIcon} />Saved Messages</li>
-                                <li className={style.menuLi}><BiArchiveIn className={style.menuIcon} />Archived Chats</li>
-                                <li className={style.menuLi}><FaRegUser className={style.menuIcon} />Contacts</li>
-                                <li className={style.menuLi}><FiSettings className={style.menuIcon} />Settings</li>
-                                <li className={style.menuLi}><RiMoonClearFill className={style.menuIcon} />Night Mode</li>
-                                <Link to="/register" className={style.menuLi}><VscSignIn className={style.menuIcon} />Sign Up</Link>
-                                <li className={style.menuLi}><AiOutlineQuestionCircle className={style.menuIcon} />Telegram Features</li>
-                                <li className={style.menuLi}><TbBug className={style.menuIcon} />Report Bug</li>
-                                <li className={style.menuLi}><TbLetterK className={style.menuIcon} />Switch to K Version</li>
-                                <li className={style.menuLi}><TbLetterW className={style.menuIcon} />Switch to Old Version</li>
-                                <li className={style.menuLi}><AiOutlinePlusCircle className={style.menuIcon} />Install App</li>
-
-
-                                <button className={style.menuLi} onClick={() => signOut(auth)}> <VscSignOut className={style.menuIcon} />Sign Out</button>
-
-
-                                <li className={style.version}>Telgramm WebZ 1.51.1</li>
-                            </ul>
+                    <div className={style.menuBtnWrap}>
+                        <GoThreeBars className={style.menuBtn} onClick={() => setclick(!click ? true : false)} />
+                        <div className={style.clickBox}>
+                            <img src={currentUser.photoURL} alt="" className={style.clickBox_img} />
+                            <h2 className={style.clickBox_h1}>{currentUser.displayName}</h2>
+                            <button onClick={() => signOut(auth)} className={style.signout}>Sign Out</button>
                         </div>
                     </div>
                     <Search />
                 </div>
                 <Sidebar />
-
             </div>
             <Chatdetails />
-        </div>
+        </div >
     )
 }
 

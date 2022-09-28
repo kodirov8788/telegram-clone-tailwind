@@ -1,53 +1,30 @@
 import { doc, onSnapshot } from 'firebase/firestore'
-import React, { useContext, useState } from 'react'
-import { useEffect } from 'react'
-import { chatInfo } from '../static/telegramStatic'
-import { db } from "../firebase/firebaseConfig"
+import React, { useContext, useEffect } from 'react'
+import { useState } from 'react'
 import { ChatContext } from '../context/ChatContext'
-
+import { firestore } from '../firebase'
+import Message from './Message'
 function Messages() {
-    const [messages, setMessages] = useState([])
     const style = {
-        appear: "w-9/12 hidden sm:flex h-full flex-col justify-between",
-        chatTop: "w-full h-[55px] bg-[#212121] flex items-center justify-betweeen px-[20px]",
-        sides: "flex h-full items-center",
-        innerSide: "flex flex-col justify-between pl-[10px]",
-        chatImgTop: "rounded-[50%] w-[42px] h-[42px] object-cover",
-        nameOf: "text-white text-[16px] font-medium",
-        typeOf: "text-[rgb(170,170,170)] text-[12px] font-normal",
-        mainChat: "w-full h-full overflow-y-scroll flex flex-col-reverse",
-        leftchat: "w-10/12 p-[10px] flex flex-col",
-        leftchat_h1: "bg-red-400 text-white w-fit  p-2 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]",
-        rightchat: "w-full p-[10px] flex justify-end",
-        rightchat_h1: "bg-yellow-400 text-white w-fit w-10/12 p-2 rounded-tl-[10px] rounded-br-[10px] rounded-bl-[10px] ",
-        chat_footer: "w-full h-[100px] bg-blue-400",
-    }
-    const { data } = useContext(ChatContext)
+        mainContainer: "h-[80%] flex flex-col justify-end",
 
+    }
+    const [messages, setMessages] = useState([])
+    const { data } = useContext(ChatContext)
     useEffect(() => {
-        const Fetchdata = () => {
-            onSnapshot(doc(db, "chats", data.chatId), (doc => {
-                doc?.exists() && setMessages(doc?.data())
-            }))
-        }
+        const unSub = onSnapshot(doc(firestore, "chats", data.chatId), (doc) => {
+            doc?.exists && setMessages(doc?.data()?.messages)
+        })
         return () => {
-            data.chatId && Fetchdata()
+            unSub()
         }
-    }, [])
-    console.log("messages >", messages);
+    }, [data.chatId])
+    // console.log(messages)
     return (
-        <div>
-            {
-                chatInfo.map((chat) => (
-                    <div className="" key={chat.id}>
-                        <div className={style.leftchat}>
-                            <h1 className={style.leftchat_h1}>{chat.send}</h1>
-                        </div>
-                        <div className={style.rightchat}>
-                            <h1 className={style.rightchat_h1}>{chat.send}</h1>
-                        </div>
-                    </div>))
-            }
+        <div className={style.mainContainer} >
+            {messages?.map((message) => (
+                <Message message={message} key={message.id} />
+            ))}
         </div>
     )
 }
